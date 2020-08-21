@@ -7,6 +7,7 @@ namespace CodeBlogFitness.BL.Model
     /// <summary>
     /// Пользователь.
     /// </summary>
+    [Serializable]
     public class User
     {
         #region Свойства
@@ -17,11 +18,11 @@ namespace CodeBlogFitness.BL.Model
         /// <summary>
         /// Пол.
         /// </summary>
-        public Gender Gender { get; }
+        public Gender Gender { get; set; }
         /// <summary>
         /// дата Рождения.
         /// </summary>
-        public DateTime BirthDate { get; }
+        public DateTime BirthDate { get; set; }
         /// <summary>
         /// Вес.
         /// </summary>
@@ -30,6 +31,7 @@ namespace CodeBlogFitness.BL.Model
         /// Рост.
         /// </summary>
         public double Height { get; set; }
+        public int Age { get { return DateTime.Now.Year; } }
         #endregion
         /// <summary>
         /// Создать нового пользователя. 
@@ -73,9 +75,17 @@ namespace CodeBlogFitness.BL.Model
             Weight = weight;
             Height = height;
         }
+        public User(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                throw new ArgumentNullException("Пустое имя или null.", nameof(name));
+            }
+            Name = name;
+        }
         public override string ToString()
         {
-            return Name;
+            return Name + " " + Age;
         }
 
     }
