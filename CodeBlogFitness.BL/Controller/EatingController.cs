@@ -21,7 +21,7 @@ namespace CodeBlogFitness.BL.Controller
             Foods = GetAllFoods();
             Eating = GetEating();
         }
-        public void Add(Food food, double weight)
+        public void Add(Activity activity, Food food, double weight)
         {
             var product = Foods.SingleOrDefault(f => f.Name == food.Name);
             if (product == null)
